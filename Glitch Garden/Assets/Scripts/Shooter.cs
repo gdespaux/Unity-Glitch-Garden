@@ -43,9 +43,17 @@ public class Shooter : MonoBehaviour {
 	}
 	
 	bool IsAttackerAheadInLane(){
-		if(myLaneSpawner.GetComponentInChildren<Attacker>()){
-			return true;
+		if (myLaneSpawner.transform.childCount <= 0) {
+			return false;
 		}
+
+		foreach(Transform attacker in myLaneSpawner.transform){
+			if(attacker.transform.position.x > transform.position.x){
+				return true;
+			}
+		}
+
+		//Attackers in lane, but past defender
 		return false;
 	}
 	
