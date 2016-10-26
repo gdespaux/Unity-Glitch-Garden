@@ -6,23 +6,37 @@ public class DefenderSpawner : MonoBehaviour {
 	public Camera myCamera;
 	
 	private GameObject defenderParent;
+	private StarDisplay starDisplay;
 	
 	void Start(){
 		defenderParent = GameObject.Find("Defenders");
+		
+		starDisplay = GameObject.FindObjectOfType<StarDisplay>();
 		
 		if(!defenderParent){
 			defenderParent = new GameObject("Defenders");
 		}
 	}
 	
-	void OnMouseDown(){
-		Vector2 rawPos = CalculateWorldPointOfMouseClick(Input.mousePosition);
-		Vector2 roundedPos = SnapToGrid(rawPos);
-		GameObject newDefender = Instantiate(Button.selectedDefender, roundedPos, Quaternion.identity) as GameObject;
-		
-		newDefender.transform.parent = defenderParent.transform;
+	int CheckStarCost(GameObject defenderPrefab){
+		Defender thisDefender = defenderPrefab.GetComponent<Defender>();
+		return thisDefender.starCost;
+	}
 	
-		print (SnapToGrid (CalculateWorldPointOfMouseClick(Input.mousePosition)) );
+	void OnMouseDown(){
+		int cost = CheckStarCost(Button.selectedDefender);
+		
+		if(starDisplay.UseStars(cost) == StarDisplay.Status.SUCCESS){
+			Vector2 rawPos = CalculateWorldPointOfMouseClick(Input.mousePosition);
+			Vector2 roundedPos = SnapToGrid(rawPos);
+			GameObject newDefender = Instantiate(Button.selectedDefender, roundedPos, Quaternion.identity) as GameObject;
+			
+			newDefender.transform.parent = defenderParent.transform;
+			
+			print (SnapToGrid (CalculateWorldPointOfMouseClick(Input.mousePosition)) );
+		} else{
+			Debug.Log ("Not enough stars!");
+		}
 	}
 	
 	Vector2 SnapToGrid(Vector2 rawWorldPosition){
