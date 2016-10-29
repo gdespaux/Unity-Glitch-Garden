@@ -7,7 +7,7 @@ public class LoseCollider : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		levelManager = GameObject.FindObjectOfType<LevelManager>();
+		levelManager = GameObject.FindObjectOfType<LevelManager> ();
 	}
 	
 	// Update is called once per frame
@@ -15,7 +15,7 @@ public class LoseCollider : MonoBehaviour {
 	
 	}
 	
-	void OnTriggerEnter2D(){
-		levelManager.LoadLevel("Lose");
+	void OnTriggerEnter2D () {
+		levelManager.LoadLevel ("Lose");
 	}
 }

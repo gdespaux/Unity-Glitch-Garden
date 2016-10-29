@@ -7,24 +7,24 @@ public class Health : MonoBehaviour {
 	
 	private Stone stone;
 	
-	void Start(){
+	void Start() {
 		stone = GetComponent<Stone>();
 	}
 	
-	public void DealDamage(float damage){
+	public void DealDamage(float damage) {
 		health -= damage;
 		
-		if(stone != null){
+		if(stone != null) {
 			stone.StoneHit();
 		}
 		
-		if(health <= 0){
+		if(health <= 0) {
 			//Optionally trigger animation
 			DestroyObject();
 		}
 	}
 	
-	public void DestroyObject(){
-		Destroy (gameObject);
+	public void DestroyObject() {
+		Destroy(gameObject);
 	}
 }

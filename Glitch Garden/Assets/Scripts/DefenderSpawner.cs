@@ -8,38 +8,38 @@ public class DefenderSpawner : MonoBehaviour {
 	private GameObject defenderParent;
 	private StarDisplay starDisplay;
 	
-	void Start(){
+	void Start() { 
 		defenderParent = GameObject.Find("Defenders");
 		
 		starDisplay = GameObject.FindObjectOfType<StarDisplay>();
 		
-		if(!defenderParent){
+		if(!defenderParent) {
 			defenderParent = new GameObject("Defenders");
 		}
 	}
 	
-	int CheckStarCost(GameObject defenderPrefab){
+	int CheckStarCost(GameObject defenderPrefab) {
 		Defender thisDefender = defenderPrefab.GetComponent<Defender>();
 		return thisDefender.starCost;
 	}
 	
-	void OnMouseDown(){
+	void OnMouseDown() {
 		int cost = CheckStarCost(Button.selectedDefender);
 		
-		if(starDisplay.UseStars(cost) == StarDisplay.Status.SUCCESS){
+		if(starDisplay.UseStars(cost) == StarDisplay.Status.SUCCESS) {
 			Vector2 rawPos = CalculateWorldPointOfMouseClick(Input.mousePosition);
 			Vector2 roundedPos = SnapToGrid(rawPos);
 			GameObject newDefender = Instantiate(Button.selectedDefender, roundedPos, Quaternion.identity) as GameObject;
 			
 			newDefender.transform.parent = defenderParent.transform;
 			
-			print (SnapToGrid (CalculateWorldPointOfMouseClick(Input.mousePosition)) );
-		} else{
-			Debug.Log ("Not enough stars!");
+			print(SnapToGrid(CalculateWorldPointOfMouseClick(Input.mousePosition)));
+		} else {
+			Debug.Log("Not enough stars!");
 		}
 	}
 	
-	Vector2 SnapToGrid(Vector2 rawWorldPosition){
+	Vector2 SnapToGrid(Vector2 rawWorldPosition) {
 		float x = Mathf.RoundToInt(rawWorldPosition.x);
 		float y = Mathf.RoundToInt(rawWorldPosition.y);
 		
@@ -50,10 +50,10 @@ public class DefenderSpawner : MonoBehaviour {
 		return new Vector2(x, y);
 	}
 	
-	Vector2 CalculateWorldPointOfMouseClick(Vector3 mousePosition){
+	Vector2 CalculateWorldPointOfMouseClick(Vector3 mousePosition) {
 		
-		float x = (float) mousePosition.x;
-		float y = (float) mousePosition.y;
+		float x = (float)mousePosition.x;
+		float y = (float)mousePosition.y;
 		float distanceFromCamera = 10f;
 		
 		Vector3 weirdTriplet = new Vector3(x, y, distanceFromCamera);

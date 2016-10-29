@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Button : MonoBehaviour {
 
@@ -7,20 +8,24 @@ public class Button : MonoBehaviour {
 	public GameObject defenderPrefab;
 	
 	private Button[] buttonArray;
+	private Text costText;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		buttonArray = GameObject.FindObjectsOfType<Button>();
+
+		costText = GetComponentInChildren<Text>();
+		costText.text = CheckStarCost().ToString();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	int CheckStarCost() {
+		Defender thisDefender = defenderPrefab.GetComponent<Defender>();
+		return thisDefender.starCost;
 	}
 	
-	void OnMouseDown(){
+	void OnMouseDown() {
 		
-		foreach(Button thisButton in buttonArray){
+		foreach(Button thisButton in buttonArray) {
 			thisButton.GetComponent<SpriteRenderer>().color = Color.black;
 		}
 		

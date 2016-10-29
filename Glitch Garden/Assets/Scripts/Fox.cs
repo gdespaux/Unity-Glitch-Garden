@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof (Attacker))]
+[RequireComponent (typeof(Attacker))]
 public class Fox : MonoBehaviour {
 
 	private Animator anim;
@@ -9,8 +9,8 @@ public class Fox : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator>();
-		attacker = GetComponent<Attacker>();
+		anim = GetComponent<Animator> ();
+		attacker = GetComponent<Attacker> ();
 	}
 	
 	// Update is called once per frame
@@ -18,20 +18,20 @@ public class Fox : MonoBehaviour {
 	
 	}
 	
-	void OnTriggerEnter2D(Collider2D collider){
+	void OnTriggerEnter2D (Collider2D collider) {
 		Debug.Log ("Fox collided with " + collider);
 		
 		GameObject obj = collider.gameObject;
 		
-		if(!obj.GetComponent<Defender>()){
+		if (!obj.GetComponent<Defender> ()) {
 			return;
 		}
 		
-		if(obj.GetComponent<Stone>()){
-			anim.SetTrigger("jump trigger");
-		} else{
-			anim.SetBool("isAttacking", true);
-			attacker.Attack(obj);
+		if (obj.GetComponent<Stone> ()) {
+			anim.SetTrigger ("jump trigger");
+		} else {
+			anim.SetBool ("isAttacking", true);
+			attacker.Attack (obj);
 		}
 	}
 }

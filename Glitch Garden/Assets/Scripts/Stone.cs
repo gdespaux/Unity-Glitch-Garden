@@ -7,10 +7,10 @@ public class Stone : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator>();
+		anim = GetComponent<Animator> ();
 	}
 	
-	public void StoneHit(){
-		anim.Play("attacked");
+	public void StoneHit () {
+		anim.Play ("attacked");
 	}
 }

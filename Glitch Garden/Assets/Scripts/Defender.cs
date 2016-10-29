@@ -7,11 +7,11 @@ public class Defender : MonoBehaviour {
 	
 	private StarDisplay starDisplay;
 	
-	void Start(){
+	void Start() { 
 		starDisplay = GameObject.FindObjectOfType<StarDisplay>();
 	}
 	
-	public void AddStars (int amount) {
+	public void AddStars(int amount) {
 		starDisplay.AddStars(amount);
 	}
 }
