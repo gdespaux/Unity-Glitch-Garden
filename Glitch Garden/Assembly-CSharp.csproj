@@ -52,9 +52,11 @@
      <Compile Include="Assets\Scripts\Defender.cs" />
      <Compile Include="Assets\Scripts\DefenderSpawner.cs" />
      <Compile Include="Assets\Scripts\Fox.cs" />
+     <Compile Include="Assets\Scripts\GameTimer.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Lizard.cs" />
+     <Compile Include="Assets\Scripts\LoseCollider.cs" />
      <Compile Include="Assets\Scripts\OptionsController.cs" />
      <Compile Include="Assets\Scripts\PlayerPrefsManager.cs" />
      <Compile Include="Assets\Scripts\Projectile.cs" />
